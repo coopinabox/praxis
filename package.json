@@ -1,0 +1,51 @@
+{
+  "name": "workclock",
+  "version": "0.0.0",
+  "description": "a time keeper for work shifts",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/ahdinosaur/workclock"
+  },
+  "author": "",
+  "license": "AGPLv3",
+  "bugs": {
+    "url": "https://github.com/ahdinosaur/workclock/issues"
+  },
+  "dependencies": {
+    "express": "~3.4.4",
+    "bootstrap": "git+https://github.com/twitter/bootstrap.git#v3.0.1",
+    "ecstatic": "~0.4.12",
+    "underscore": "~1.5.2",
+    "bluebird": "~0.11.5-0",
+    "bookshelf": "~0.6.1",
+    "sqlite3": "~2.1.19",
+    "restangular": "~1.2.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt": "~0.4.1",
+    "grunt-browserify": "~1.2.11",
+    "grunt-express": "~1.2.1",
+    "grunt-contrib-less": "~0.8.1",
+    "brfs": "0.0.8",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-hashres": "~0.3.3",
+    "grunt-contrib-uglify": "~0.2.5",
+    "grunt-spritesmith": "~1.11.3",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-gh-pages": "~0.8.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "napa": "~0.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "napa"
+  },
+  "napa": {
+    "angular": "angular/bower-angular",
+    "angular-route": "angular/bower-angular-route",
+    "angular-xeditable": "vitalets/angular-xeditable"
+  }
+}

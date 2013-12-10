@@ -1,0 +1,35 @@
+<div ng-controller="TaskCtrl as taskCtrl">
+  <table class="table table-bordered table-hover table-condensed">
+    <thead class="lead">
+      <tr>
+        <th>task</th>
+        <th>description</th>
+        <th><button ng-click="addTask()" class="btn btn-default">+</button></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="task in tasks">
+        <td editable-text="task.name" e-name="name" e-form="rowform" e-required>
+          {{ task.name || 'empty' }}
+        </td>
+        <td editable-text="task.description" e-name="description" e-form="rowform" e-required>
+          {{ task.description || 'empty' }}
+        </td>
+        <td style="white-space: nowrap">
+          <form editable-form name="rowform" ng-show="rowform.$visible" onbeforesave="updateTask($data, task.id)" class="form-buttons form-inline" shown="inserted == task">
+            <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+              save
+            </button>
+            <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+              cancel
+            </button>
+          </form>
+          <div class="buttons" ng-show="!rowform.$visible">
+            <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+            <button class="btn btn-danger" ng-click="removeTask($index)">del</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
