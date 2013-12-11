@@ -57,11 +57,11 @@ module.exports.update = function (req, res) {
 };
 
 module.exports.remove = function (req, res) {
-  collection.get(req.params.id)
-    .destroy()
-    .then(function (res) {
-      res.json(res);
-    }, function (err) {
-      return next(err);
-    });
+  collection.remove(
+    collection.get(req.params.id)
+  ).destroy().then(function (result) {
+    res.send(204);
+  }, function (err) {
+    return next(err);
+  });
 };

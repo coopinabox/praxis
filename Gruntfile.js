@@ -36,6 +36,7 @@ module.exports = function (grunt) {
   var defaultBanner = '/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd") %> */\n';
   var lessPaths = [
     'node_modules/bootstrap/less/',
+    'node_modules/angular-xeditable/dist/css/',
     'client/',
   ];
   var fontFiles = [

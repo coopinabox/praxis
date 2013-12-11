@@ -4,19 +4,23 @@
       <tr>
         <th>task</th>
         <th>description</th>
-        <th><button ng-click="addTask()" class="btn btn-default">+</button></th>
+        <th><button ng-click="createTask()" class="btn btn-default">+</button></th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="task in tasks">
-        <td editable-text="task.name" e-name="name" e-form="rowform" e-required>
-          {{ task.name || 'empty' }}
+        <td>
+          <span editable-text="task.name" e-name="name" e-form="rowform" e-required>
+            {{ task.name || 'empty' }}
+          </span>
         </td>
-        <td editable-text="task.description" e-name="description" e-form="rowform" e-required>
-          {{ task.description || 'empty' }}
+        <td>
+          <span editable-text="task.description" e-name="description" e-form="rowform" e-required>
+            {{ task.description || 'empty' }}
+          </span>
         </td>
         <td style="white-space: nowrap">
-          <form editable-form name="rowform" ng-show="rowform.$visible" onbeforesave="updateTask($data, task.id)" class="form-buttons form-inline" shown="inserted == task">
+          <form editable-form name="rowform" ng-show="rowform.$visible" onbeforesave="updateTask(task, $data)" class="form-buttons form-inline" shown="inserted == task">
             <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
               save
             </button>
@@ -26,7 +30,7 @@
           </form>
           <div class="buttons" ng-show="!rowform.$visible">
             <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-            <button class="btn btn-danger" ng-click="removeTask($index)">del</button>
+            <button class="btn btn-danger" ng-click="removeTask(task, $index)">del</button>
           </div>
         </td>
       </tr>

@@ -19,20 +19,25 @@ angular.module('app.controllers', ['restangular', 'xeditable'])
       $scope.tasks = tasks;
     });
 
-    $scope.updateTask = function (data, id) {
-      var task = Restangular.one('tasks', id);
+    $scope.updateTask = function (task, data) {
       angular.extend(task, data);
       return task.put();
     };
 
     $scope.createTask = function () {
       var task = Restangular.one('tasks');
-      task.name = "name";
-      task.description = "description";
-
       task.post().then(function (res) {
-        newTask.id = res.id;
-        $scope.tasks.push(newTask);
+        task.id = res.id;
+        $scope.tasks.push(task);
+        $scope.inserted = task;
+      }, function (err) {
+        console.error(err);
+      });
+    };
+
+    $scope.removeTask = function (task, index) {
+      task.remove().then(function () {
+        $scope.tasks.splice(index, 1);
       }, function (err) {
         console.error(err);
       });

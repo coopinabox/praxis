@@ -1,12 +1,13 @@
 angular = require('angular');
 var ngRoute = require('angular-route');
+var xeditable = require('angular-xeditable');
 
 require('./filters');
 require('./services');
 require('./directives');
 require('./controllers');
 
-module.exports = angular.module('app', ['app.filters', 'app.services', 'app.directives', 'app.controllers', 'ngRoute'])
+module.exports = angular.module('app', ['app.filters', 'app.services', 'app.directives', 'app.controllers', 'ngRoute', 'xeditable'])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
     $routeProvider.when('/', {
@@ -18,6 +19,8 @@ module.exports = angular.module('app', ['app.filters', 'app.services', 'app.dire
     
     $locationProvider.html5Mode(true);
   }])
-  .run(['$rootScope', function($rootScope) {
+  .run(['$rootScope', 'editableOptions', function($rootScope, editableOptions) {
     $rootScope.name = "workclock";
+
+    editableOptions.theme = 'bs3';
   }]);
