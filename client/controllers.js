@@ -21,25 +21,34 @@ angular.module('app.controllers', ['restangular', 'xeditable'])
 
     $scope.updateTask = function (task, data) {
       angular.extend(task, data);
-      return task.put();
+      return task.put().then(null, function (resp) {
+        if (resp.status === 400 && resp.data) {
+          resp.data.forEach(function (error) {
+            var field = error.dataPath.match(/^\/?(.*)$/)[1];
+            // issue: https://github.com/angular/angular.js/issues/1404
+            console.log($scope);
+            $scope.taskform.$setError(field, error.message);
+          });
+        }
+      });
     };
 
     $scope.createTask = function () {
       var task = Restangular.one('tasks');
-      task.post().then(function (res) {
-        task.id = res.id;
+      task.post().then(function (resp) {
+        task.id = resp.id;
         $scope.tasks.push(task);
         $scope.inserted = task;
-      }, function (err) {
-        console.error(err);
+      }, function (resp) {
+        console.error(resp);
       });
     };
 
     $scope.removeTask = function (task, index) {
       task.remove().then(function () {
         $scope.tasks.splice(index, 1);
-      }, function (err) {
-        console.error(err);
+      }, function (resp) {
+        console.error(resp);
       });
     };
   }]);

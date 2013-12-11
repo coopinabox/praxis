@@ -1,5 +1,6 @@
 var bookshelf = require('bookshelf');
 var promise = require('bluebird');
+var tv4 = require('tv4');
 
 var Bookshelf = bookshelf.initialize({
   client: 'sqlite3',
@@ -18,6 +19,20 @@ Bookshelf.knex.schema.hasTable('tasks').then(function(exists) {
     });
   }
 });
+
+var schema = {
+  id: 'task',
+  type: 'object',
+  properties: {
+    name: {
+      type: 'string',
+    },
+    description: {
+      type: 'string',
+    },
+  },
+}
+tv4.addSchema(schema);
 
 var Model = Bookshelf.Model.extend({
   tableName: 'tasks',
@@ -38,22 +53,38 @@ module.exports.get = function (req, res) {
 };
 
 module.exports.create = function (req, res, next) {
-  collection.create(req.body, {})
-    .then(function (model) {
-      res.json(model);
-    }, function (err) {
-      return next(err);
-    });
+  var validation = tv4.validateMultiple(req.body, schema, true);
+  if (validation.valid) {
+    collection.create(req.body, {})
+      .then(function (model) {
+        res.json(201, model);
+      }, function (err) {
+        return next(err);
+      });
+  } else {
+    if (validation.missing.length > 0) {
+      throw new Error("missing validation schema");
+    }
+    res.json(400, validation.errors);
+  }
 };
 
 module.exports.update = function (req, res) {
-  collection.get(req.params.id)
-    .save(req.body, { patch: true })
-    .then(function (model) {
-      res.json(model);
-    }, function (err) {
-      return next(err);
-    });
+  var validation = tv4.validateMultiple(req.body, schema, true);
+  if (validation.valid) {
+    collection.get(req.params.id)
+      .save(req.body, { patch: true })
+      .then(function (model) {
+        res.json(200, model);
+      }, function (err) {
+        return next(err);
+      });
+  } else {
+    if (validation.missing.length > 0) {
+      throw new Error("missing validation schema");
+    }
+    res.json(400, validation.errors);
+  }
 };
 
 module.exports.remove = function (req, res) {
