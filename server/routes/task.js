@@ -1,6 +1,7 @@
 var bookshelf = require('bookshelf');
 var promise = require('bluebird');
-var tv4 = require('tv4');
+
+var validate = require('../../shared/models/task').validate
 
 var Bookshelf = bookshelf.initialize({
   client: 'sqlite3',
@@ -19,20 +20,6 @@ Bookshelf.knex.schema.hasTable('tasks').then(function(exists) {
     });
   }
 });
-
-var schema = {
-  id: 'task',
-  type: 'object',
-  properties: {
-    name: {
-      type: 'string',
-    },
-    description: {
-      type: 'string',
-    },
-  },
-}
-tv4.addSchema(schema);
 
 var Model = Bookshelf.Model.extend({
   tableName: 'tasks',
@@ -53,38 +40,32 @@ module.exports.get = function (req, res) {
 };
 
 module.exports.create = function (req, res, next) {
-  var validation = tv4.validateMultiple(req.body, schema, true);
-  if (validation.valid) {
+  validate(req.body).then(function () {
     collection.create(req.body, {})
       .then(function (model) {
         res.json(201, model);
       }, function (err) {
-        return next(err);
+        next(err);
       });
-  } else {
-    if (validation.missing.length > 0) {
-      throw new Error("missing validation schema");
-    }
-    res.json(400, validation.errors);
-  }
+  }, function (errors) {
+    console.log(errors);
+    res.json(400, errors);
+  });
 };
 
 module.exports.update = function (req, res) {
-  var validation = tv4.validateMultiple(req.body, schema, true);
-  if (validation.valid) {
+  validate(req.body).then(function () {
     collection.get(req.params.id)
       .save(req.body, { patch: true })
       .then(function (model) {
         res.json(200, model);
       }, function (err) {
-        return next(err);
+        next(err);
       });
-  } else {
-    if (validation.missing.length > 0) {
-      throw new Error("missing validation schema");
-    }
-    res.json(400, validation.errors);
-  }
+  }, function (errors) {
+    console.log(errors);
+    res.json(400, errors);
+  });
 };
 
 module.exports.remove = function (req, res) {
@@ -93,6 +74,6 @@ module.exports.remove = function (req, res) {
   ).destroy().then(function (result) {
     res.send(204);
   }, function (err) {
-    return next(err);
+    next(err);
   });
 };

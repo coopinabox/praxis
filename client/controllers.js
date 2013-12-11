@@ -1,6 +1,7 @@
 var angular = require('angular');
 var restangular = require('restangular');
 var xeditable = require('angular-xeditable');
+var _ = require('underscore');
 
 angular.module('app.controllers', ['restangular', 'xeditable'])
   .controller('app', ['$rootScope', '$route', function ($rootScope, $route) {
@@ -22,14 +23,18 @@ angular.module('app.controllers', ['restangular', 'xeditable'])
     $scope.updateTask = function (task, data) {
       angular.extend(task, data);
       return task.put().then(null, function (resp) {
+        console.log(resp);
         if (resp.status === 400 && resp.data) {
-          resp.data.forEach(function (error) {
-            var field = error.dataPath.match(/^\/?(.*)$/)[1];
+          _.each(resp.data, function (errors, value) {
+            console.log(errors, value);
+            var error = _.pluck(errors, 'rule').join('; ');
             // issue: https://github.com/angular/angular.js/issues/1404
-            console.log($scope);
-            $scope.taskform.$setError(field, error.message);
+            console.log(error, $scope.taskform);
+            //$scope.taskform.$setError(field, error.message);
           });
         }
+      }, function (resp) {
+        console.error(resp);
       });
     };
 
