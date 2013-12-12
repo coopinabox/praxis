@@ -8,6 +8,6 @@ a time keeper for work shifts
 
 ```
 npm install
-grunt
+node .
 ```
-browse to [http://localhost:8000]
+browse to [http://localhost:4000]

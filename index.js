@@ -42,8 +42,13 @@ app.get('/', function(req, res) {
 // Minimize and pack assets if you type: SS_ENV=production node app.js
 if (ss.env === 'production') ss.client.packAssets()
 
-server = app.listen(5000);
-ss.start(server);
+// add console server
+var consoleServer = require('ss-console')(ss);
+consoleServer.listen(5000);
 
 // add ss middleware to app
 app.stack = ss.http.middleware.stack.concat(app.stack);
+
+// start app
+server = app.listen(4000);
+ss.start(server);

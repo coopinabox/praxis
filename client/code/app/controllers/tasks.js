@@ -33,7 +33,6 @@ angular.module('app.tasks', ['xeditable', 'ssAngular'])
       rpc('tasks.create', newTask, function (err, task) {
         if (err) {
           console.error(err);
-          return;
         }
       });
     };
