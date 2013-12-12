@@ -7,8 +7,8 @@ var app = express();
 ss.client.formatters.add(require('ss-less'));
 ss.client.templateEngine.use('angular');
 
-//responders
-ss.responders.add(require('ss-angular'),{pollFreq: 1000});
+// responders
+ss.responders.add(require('ss-angular'), { pollFreq: 1000 });
 
 // define main client
 ss.client.define('main', {
@@ -45,4 +45,5 @@ if (ss.env === 'production') ss.client.packAssets()
 server = app.listen(5000);
 ss.start(server);
 
+// add ss middleware to app
 app.stack = ss.http.middleware.stack.concat(app.stack);

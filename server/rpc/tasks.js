@@ -3,14 +3,19 @@ var tasks = require('../model/tasks');
 var collection = tasks.collection;
 var validate = tasks.validate;
 
+// return an object of CRUD actions that
+// can be called on client with rpc(tasks.*
+
 module.exports.actions = function (req, res, ss) {
 
   return {
 
+    // return all tasks
     all: function () {
       res(null, collection.toJSON());
     },
 
+    // create new task
     create: function (task) {
       validate(task).then(function () {
         collection.create(task, {})
@@ -25,10 +30,12 @@ module.exports.actions = function (req, res, ss) {
       });
     },
 
+    // get a task by id
     get: function (id) {
       res(null, collection.get(req.params.id).toJSON());
     },
 
+    // update a task
     update: function (task) {
       validate(task).then(function () {
         collection.get(task.id)
@@ -44,6 +51,7 @@ module.exports.actions = function (req, res, ss) {
       });
     },
 
+    // delete a task by id
     delete: function (id) {
       collection.remove(
         collection.get(id)

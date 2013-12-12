@@ -2,6 +2,7 @@ var bookshelf = require('bookshelf');
 var promise = require('bluebird');
 var validator = require('checkit');
 
+// initialize database
 var Bookshelf = bookshelf.initialize({
   client: 'sqlite3',
   connection: {
@@ -9,7 +10,7 @@ var Bookshelf = bookshelf.initialize({
   },
 });
 
-// initialize tasks schema
+// initialize tasks table
 var table = Bookshelf.knex.schema.hasTable('tasks').then(function(exists) {
   if (!exists) {
     return Bookshelf.knex.schema.createTable('tasks', function (t) {
@@ -24,17 +25,21 @@ var table = Bookshelf.knex.schema.hasTable('tasks').then(function(exists) {
   }
 });
 
+// create task model class
 var Model = module.exports.Model = Bookshelf.Model.extend({
   tableName: 'tasks',
 });
 
+// create task collection class
 var Collection = module.exports.Collection = Bookshelf.Collection.extend({
   model: Model,
 });
 
+// new task collection instance
 var collection = module.exports.collection = new Collection();
 table.then(function() { collection.fetch(); });
 
+// define task validator
 var validate = module.exports.validate = function (task) {
 
   var defer = promise.defer();
