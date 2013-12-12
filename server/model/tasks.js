@@ -10,12 +10,16 @@ var Bookshelf = bookshelf.initialize({
 });
 
 // initialize tasks schema
-Bookshelf.knex.schema.hasTable('tasks').then(function(exists) {
+var table = Bookshelf.knex.schema.hasTable('tasks').then(function(exists) {
   if (!exists) {
     return Bookshelf.knex.schema.createTable('tasks', function (t) {
       t.increments('id').primary();
       t.string('name', 100);
       t.text('description');
+    });
+  } else {
+    return Bookshelf.knex.schema.table('tasks', function (t) {
+
     });
   }
 });
@@ -29,7 +33,7 @@ var Collection = module.exports.Collection = Bookshelf.Collection.extend({
 });
 
 var collection = module.exports.collection = new Collection();
-collection.fetch();
+table.then(function() { collection.fetch(); });
 
 var validate = module.exports.validate = function (task) {
 
@@ -48,13 +52,14 @@ var validate = module.exports.validate = function (task) {
 };
 
 var hash = require('es-hash');
+var decycle = require('cycle').decycle;
 
 module.exports.make = function (des, chan, ss) {
   return {
     poll: function (where) {
       var obj = {
-//        hash: hash(collection.models),
-        models: [],
+        hash: hash(decycle(collection.models)),
+        models: collection.models,
       };
       chan(obj);
     },

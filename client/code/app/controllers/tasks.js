@@ -4,7 +4,13 @@ angular.module('app.tasks', ['xeditable', 'ssAngular'])
     $scope.linkModel('tasks', {});
 
     $scope.updateTask = function (task, data) {
+
       angular.extend(task, data);
+
+      // delete all $* angular keys before updating db
+      for (var key in task)
+        if (key[0] === '$') 
+          delete task[key];
 
       rpc('tasks.update', task, function (err) {
         if (err) {
@@ -20,21 +26,25 @@ angular.module('app.tasks', ['xeditable', 'ssAngular'])
     };
 
     $scope.createTask = function () {
-      rpc('tasks.create', {}, function (err, task) {
+      var newTask = {};
+
+      $scope.tasks.models.push(newTask);
+
+      rpc('tasks.create', newTask, function (err, task) {
         if (err) {
           console.error(err);
           return;
         }
-        $scope.tasks.models.push(task);
       });
     };
 
     $scope.deleteTask = function (task, index) {
+      $scope.tasks.models.splice(index, 1);
+
       rpc('tasks.delete', task, function (err) {
         if (err) {
           console.error(err);
         }
-        $scope.tasks.models.splice(index, 1);
       });
     };
   }]);
