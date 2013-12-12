@@ -1,7 +1,5 @@
+var http = require('http');
 var ss = require('socketstream');
-var express = require('express');
-
-var app = express();
 
 // code formatters
 ss.client.formatters.add(require('ss-less'));
@@ -35,20 +33,20 @@ ss.client.set({
   ],
 });
 
-app.get('/', function(req, res) {
+ss.http.route('/', function(req, res) {
   res.serveClient('main');
 });
 
 // Minimize and pack assets if you type: SS_ENV=production node app.js
 if (ss.env === 'production') ss.client.packAssets()
 
-// add console server
+// start console server
 var consoleServer = require('ss-console')(ss);
 consoleServer.listen(5000);
 
-// add ss middleware to app
-app.stack = ss.http.middleware.stack.concat(app.stack);
+// start http server
+var httpServer = http.Server(ss.http.middleware);
+httpServer.listen(4000);
 
-// start app
-server = app.listen(4000);
-ss.start(server);
+// start ss server
+ss.start(httpServer);

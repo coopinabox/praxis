@@ -13,7 +13,6 @@
     "url": "https://github.com/ahdinosaur/workclock/issues"
   },
   "dependencies": {
-    "express": "~3.4.4",
     "bootstrap": "git+https://github.com/twitter/bootstrap.git#v3.0.1",
     "ecstatic": "~0.4.12",
     "underscore": "~1.5.2",
