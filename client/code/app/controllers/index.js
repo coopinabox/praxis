@@ -1,17 +1,8 @@
-angular = require('angular');
-var ngRoute = require('angular-route');
-var xeditable = require('angular-xeditable');
-
-require('./filters');
-require('./services');
-require('./directives');
-require('./controllers');
-
-module.exports = angular.module('app', ['app.filters', 'app.services', 'app.directives', 'app.controllers', 'ngRoute', 'xeditable'])
+angular.module('app', ['ngRoute', 'xeditable', 'app.header', 'app.tasks'])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
     $routeProvider.when('/', {
-      templateUrl: 'partials/tasks.html',
+      templateUrl: 'tasks.html',
       title: 'Tasks',
     });
     
@@ -23,4 +14,10 @@ module.exports = angular.module('app', ['app.filters', 'app.services', 'app.dire
     $rootScope.name = "workclock";
 
     editableOptions.theme = 'bs3';
+  }])
+  .controller('app', ['$rootScope', '$route', function ($rootScope, $route) {
+    // listen to route change to dynamically set title and template.
+    $rootScope.$on("$routeChangeSuccess", function($currentRoute, $previousRoute) {
+      $rootScope.title = $route.current.title;
+    });
   }]);

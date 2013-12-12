@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="task in tasks">
+      <tr ng-repeat="task in tasks.models">
         <td>
           <span editable-text="task.name" e-name="name" e-form="taskform" e-required>
             {{ task.name || 'empty' }}
@@ -30,7 +30,7 @@
           </form>
           <div class="buttons" ng-show="!taskform.$visible">
             <button class="btn btn-primary" ng-click="taskform.$show()">edit</button>
-            <button class="btn btn-danger" ng-click="removeTask(task, $index)">del</button>
+            <button class="btn btn-danger" ng-click="deleteTask(task, $index)">del</button>
           </div>
         </td>
       </tr>
