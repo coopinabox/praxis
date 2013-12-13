@@ -1,19 +1,9 @@
-var express = require('express');
-var static = require('ecstatic');
+var feathers = require('feathers');
 
-var task = require('./routes/task');
+var app = feathers()
+  .configure(feathers.socketio())
+  .use('/tasks', require('./services/tasks'))
 
-var app = express();
-
-app.configure(function () {
-  app.use(express.bodyParser());
-//  app.use(static(__dirname + '/../static'));
-});
-
-app.get('/tasks', task.all);
-app.get('/tasks/:id', task.get);
-app.post('/tasks', task.create);
-app.put('/tasks/:id', task.update);
-app.delete('/tasks/:id', task.remove);
+//  .listen(5000);
 
 module.exports = app;
