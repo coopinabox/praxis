@@ -11,14 +11,13 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-express');
   grunt.loadNpmTasks('grunt-spritesmith');
   grunt.loadNpmTasks('grunt-hashres');
-  grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-knex-migrate');
 
   grunt.registerTask('default', ['dev']);
   grunt.registerTask('html', ['copy:html']);
   grunt.registerTask('css', ['sprite', 'less']);
   grunt.registerTask('js', ['browserify:vendor', 'browserify:app']);
-  grunt.registerTask('db', ['shell']/*['knexmigrate']*/);
+  grunt.registerTask('db', ['knexmigrate:latest']);
   grunt.registerTask('assets', ['copy:assets', 'copy:fonts']);
   grunt.registerTask('build', ['clean', 'html', 'js', 'css', 'assets']);
   grunt.registerTask('server', ['express']);
@@ -215,20 +214,6 @@ module.exports = function (grunt) {
           'build/js/app.js',
         ],
         'dest': 'build/index.html',
-      },
-    },
-
-    'shell': {
-      'migrate': {
-        'options': {
-          'failOnError': true,
-          'stdout': true,
-          'stderr': true,
-          'execOptions': {
-            'cwd': __dirname,
-          },
-        },
-        'command': __dirname + '/node_modules/bookshelf/node_modules/knex/bin/knex --config ' + __dirname + '/server/db/config.js migrate:latest',
       },
     },
 
