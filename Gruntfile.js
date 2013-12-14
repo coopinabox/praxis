@@ -32,7 +32,6 @@ module.exports = function (grunt) {
     'node_modules/angular/angular',
     'node_modules/angular-route/angular-route',
     'node_modules/restangular/dist/restangular',
-    'node_modules/angular-xeditable/dist/js/xeditable',
   ];
   var defaultBanner = '/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd") %> */\n';
   var lessPaths = [
@@ -84,11 +83,6 @@ module.exports = function (grunt) {
                 'underscore' : '_',
               },
             },
-            'angular-xeditable': {
-              'path': jsVendors[6],
-              'exports': null,
-              'depends': { 'angular': 'angular'},
-            },
           },
         },
       },
@@ -98,7 +92,7 @@ module.exports = function (grunt) {
         'options': {
           'debug': true,
           'transform': ['brfs'],
-          'external': ['jquery', 'angular', 'underscore', 'angular-route', 'restangular', 'angular-xeditable'],
+          'external': ['jquery'],
         },
       },
     },
