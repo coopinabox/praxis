@@ -19,7 +19,6 @@
     "bluebird": "~0.11.5-0",
     "bookshelf": "~0.6.1",
     "sqlite3": "~2.1.19",
-    "restangular": "~1.2.0",
     "checkit": "~0.1.5",
     "feathers": "~0.2.0",
     "jquery": "~2.1.0-beta2",
@@ -49,8 +48,5 @@
     "install": "napa"
   },
   "napa": {
-    "angular": "angular/bower-angular",
-    "angular-route": "angular/bower-angular-route",
-    "angular-xeditable": "vitalets/angular-xeditable"
   }
 }
