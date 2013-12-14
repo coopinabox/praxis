@@ -18,13 +18,13 @@ module.exports = function (grunt) {
   grunt.registerTask('html', ['copy:html']);
   grunt.registerTask('css', ['sprite', 'less']);
   grunt.registerTask('js', ['browserify:vendor', 'browserify:app']);
-  grunt.registerTask('db', ['shell']);//'knexmigrate']);
+  grunt.registerTask('db', ['shell']/*['knexmigrate']*/);
   grunt.registerTask('assets', ['copy:assets', 'copy:fonts']);
-  grunt.registerTask('build', ['clean', 'html', 'js', 'css', 'assets', 'db']);
+  grunt.registerTask('build', ['clean', 'html', 'js', 'css', 'assets']);
   grunt.registerTask('server', ['express']);
-  grunt.registerTask('dev', ['build', 'server', 'watch']);
+  grunt.registerTask('dev', ['build', 'db', 'server', 'watch']);
   grunt.registerTask('minify', ['cssmin', 'uglify']);
-  grunt.registerTask('deploy', ['build', 'minify', 'hashres']);
+  grunt.registerTask('prod', ['build', 'db', 'minify', 'hashres']);
 
   var jsVendors = [
     'node_modules/jquery/dist/jquery',
@@ -225,15 +225,15 @@ module.exports = function (grunt) {
           'stdout': true,
           'stderr': true,
           'execOptions': {
-            'cwd': __dirname + '/server',
+            'cwd': __dirname,
           },
         },
-        'command': __dirname + '/node_modules/bookshelf/node_modules/knex/bin/knex --config ' + __dirname + '/server/db.json migrate:latest',
+        'command': __dirname + '/node_modules/bookshelf/node_modules/knex/bin/knex --config ' + __dirname + '/server/db/config.js migrate:latest',
       },
     },
 
     'knexmigrate': {
-      'config': __dirname + '/server/db.json',
+      'config': __dirname + '/server/db/config.js',
     },
   });
 };

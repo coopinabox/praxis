@@ -1,13 +1,13 @@
 var promise = require('bluebird');
 
 var validate = require('../../shared/models/task').validate
-var Bookshelf = require('../db.js');
+var db = require('../db');
 
-var Model = Bookshelf.Model.extend({
+var Model = db.Model.extend({
   tableName: 'tasks',
 });
 
-var Collection = Bookshelf.Collection.extend({
+var Collection = db.Collection.extend({
   model: Model,
   initialize: function () {
     this.fetch();
