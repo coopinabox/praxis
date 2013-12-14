@@ -9,16 +9,18 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-express');
-  grunt.loadNpmTasks('grunt-gh-pages');
   grunt.loadNpmTasks('grunt-spritesmith');
   grunt.loadNpmTasks('grunt-hashres');
+  grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-knex-migrate');
 
   grunt.registerTask('default', ['dev']);
   grunt.registerTask('html', ['copy:html']);
   grunt.registerTask('css', ['sprite', 'less']);
   grunt.registerTask('js', ['browserify:vendor', 'browserify:app']);
-  grunt.registerTask('build', ['clean', 'html', 'js', 'css', 'assets']);
+  grunt.registerTask('db', ['shell']);//'knexmigrate']);
   grunt.registerTask('assets', ['copy:assets', 'copy:fonts']);
+  grunt.registerTask('build', ['clean', 'html', 'js', 'css', 'assets', 'db']);
   grunt.registerTask('server', ['express']);
   grunt.registerTask('dev', ['build', 'server', 'watch']);
   grunt.registerTask('minify', ['cssmin', 'uglify']);
@@ -214,6 +216,24 @@ module.exports = function (grunt) {
         ],
         'dest': 'build/index.html',
       },
+    },
+
+    'shell': {
+      'migrate': {
+        'options': {
+          'failOnError': true,
+          'stdout': true,
+          'stderr': true,
+          'execOptions': {
+            'cwd': __dirname + '/server',
+          },
+        },
+        'command': __dirname + '/node_modules/bookshelf/node_modules/knex/bin/knex --config ' + __dirname + '/server/db.json migrate:latest',
+      },
+    },
+
+    'knexmigrate': {
+      'config': __dirname + '/server/db.json',
     },
   });
 };

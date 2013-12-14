@@ -6,11 +6,21 @@ Backbone.$ = $;
 var fs = require('fs');
 
 var Task = Backbone.Model.extend({
+  initialize: function () {
+    this.on('change', function () {
+      if (this.hasChanged()) {
+        this.save();
+      }
+    });
+  },
 });
 
 var Tasks = Backbone.Collection.extend({
   model: Task,
   url: '/tasks',
+  initialize: function () {
+    this.fetch();
+  },
 });
 
 var tasks = new Tasks();
@@ -22,6 +32,7 @@ var tasksView = new Ractive({
   data: {
     tasks: tasks,
   },
+  lazy: true,
 })
 tasksView.on('create', function (event) {
   var task = tasks.create({});

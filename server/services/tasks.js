@@ -1,25 +1,7 @@
-var bookshelf = require('bookshelf');
 var promise = require('bluebird');
 
 var validate = require('../../shared/models/task').validate
-
-var Bookshelf = bookshelf.initialize({
-  client: 'sqlite3',
-  connection: {
-    filename: "./db.sqlite",
-  },
-});
-
-// initialize tasks schema
-Bookshelf.knex.schema.hasTable('tasks').then(function(exists) {
-  if (!exists) {
-    return Bookshelf.knex.schema.createTable('tasks', function (t) {
-      t.increments('id').primary();
-      t.string('name', 100);
-      t.text('description');
-    });
-  }
-});
+var Bookshelf = require('../db.js');
 
 var Model = Bookshelf.Model.extend({
   tableName: 'tasks',
@@ -27,6 +9,9 @@ var Model = Bookshelf.Model.extend({
 
 var Collection = Bookshelf.Collection.extend({
   model: Model,
+  initialize: function () {
+    this.fetch();
+  },
 });
 
 module.exports = {
@@ -63,7 +48,7 @@ module.exports = {
       self.collection.get(id)
         .save(data, { patch: true })
         .then(function (model) {
-          cb(model);
+          cb(null, model);
         }, function (err) {
           throw err;
         });

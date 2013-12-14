@@ -1,0 +1,10 @@
+{  
+  "directory": "./server/migrations",
+  "tableName": "db_migrations",
+  "database": {
+    "client": "sqlite3",
+    "connection": {
+      "filename": "../db.sqlite"
+    }
+  }
+}
