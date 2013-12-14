@@ -62,27 +62,6 @@ module.exports = function (grunt) {
               'exports': null,
               'depends': { 'jquery': '$'},
             },
-            'underscore': {
-              'path': jsVendors[2],
-              'exports': '_',
-            },
-            'angular': {
-              'path': jsVendors[3],
-              'exports': 'angular',
-            },
-            'angular-route': {
-              'path': jsVendors[4],
-              'exports': null,
-              'depends': { 'angular': 'angular'},
-            },
-            'restangular': {
-              'path': jsVendors[5],
-              'exports': null,
-              'depends': {
-                'angular': 'angular',
-                'underscore' : '_',
-              },
-            },
           },
         },
       },
