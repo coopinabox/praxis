@@ -198,7 +198,6 @@ module.exports = function (grunt) {
       'deploy': {
         'files': {
           'build/js/vendor.js': 'build/js/vendor.js',
-          'build/js/templates.js': 'build/js/templates.js',
           'build/js/app.js': 'build/js/app.js',
         },
       },
@@ -210,7 +209,6 @@ module.exports = function (grunt) {
         'src': [
           'build/css/index.css',
           'build/js/vendor.js',
-          'build/js/templates.js',
           'build/js/app.js',
         ],
         'dest': 'build/index.html',
