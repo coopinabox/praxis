@@ -1,0 +1,28 @@
+<div>
+  <table class="table table-bordered table-hover table-condensed">
+    <thead class="lead">
+      <tr>
+        <th>task</th>
+        <th>description</th>
+        <th><button on-click="create" class="btn btn-default">+</button></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#tasks}}
+      <tr>
+        <td>
+          <input value='{{ name }}' />
+        </td>
+        <td>
+          <input value='{{ description }}' />
+        </td>
+        <td>
+          <div class="buttons">
+            <button on-click="remove" class="btn btn-danger">-</button>
+          </div>
+        </td>
+      </tr>
+      {{/tasks}}
+    </tbody>
+  </table>
+</div>
