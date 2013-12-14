@@ -28,15 +28,10 @@ module.exports = function (grunt) {
   var jsVendors = [
     'node_modules/jquery/dist/jquery',
     'node_modules/bootstrap/dist/js/bootstrap.js',
-    'node_modules/underscore/underscore',
-    'node_modules/angular/angular',
-    'node_modules/angular-route/angular-route',
-    'node_modules/restangular/dist/restangular',
   ];
   var defaultBanner = '/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd") %> */\n';
   var lessPaths = [
     'node_modules/bootstrap/less/',
-    'node_modules/angular-xeditable/dist/css/',
     'client/',
   ];
   var fontFiles = [
