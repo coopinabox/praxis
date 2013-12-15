@@ -1,7 +1,7 @@
 // attach global jquery to backbone
 require('backbone').$ = $;
 
-require('./validation');
+require('./validation.client');
 
 var fs = require('fs');
 var headerHtml = fs.readFileSync(__dirname + '/index.header.html');
