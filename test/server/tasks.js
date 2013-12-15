@@ -12,7 +12,7 @@ describe("Collection", function () {
     collection.reset();
   });
   describe(".create", function () {
-    it("has correct defaults", function (done) {
+    it("should have correct defaults", function (done) {
       collection.create({}).then(function (model) {
         model.id
           .should.be.type('number');
@@ -22,6 +22,18 @@ describe("Collection", function () {
         model.get('description')
           .should.be.type('string')
           .and.equal('');
+        done();
+      });
+    });
+    it("should not allow invalid data", function (done) {
+      collection.create({
+        "name": "areallylongnamethatissolong",
+        "description": "",
+      }).then(function (data) {
+        false.should.be.ok;
+      }).catch(function (error) {
+        should.exist(error);
+        error.name.should.equal("Name must be at most 10 characters");
         done();
       });
     });
