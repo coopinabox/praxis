@@ -1,14 +1,43 @@
-.task-form {
+.tasks {
+  .container;
 
-  .name-group {
-    .make-sm-column(4);
-    .make-md-column(3);
-    .make-lg-column(2);
+  > header {
+    h2 {
+      display: inline-block;
+    }
+    .btn-group {
+      display: inline-block;
+      
+      > .create {
+        .btn;
+        .btn-default;
+      }
+    }
   }
 
-  .description-group {
-    .make-sm-column(8);
-    .make-md-column(9);
-    .make-lg-column(10);
+  > section > .task-form {
+    .make-row();
+    .form-inline;
+
+    .buttons {
+      .make-xs-column(1);
+      
+      .remove {
+        .btn;
+        .btn-danger;
+      }
+    }
+    .name-group {
+      .make-xs-column(11);
+      .make-sm-column(4);
+      .make-md-column(3);
+      .make-lg-column(2);
+    }
+    .description-group {
+      .make-xs-column(12);
+      .make-sm-column(7);
+      .make-md-column(8);
+      .make-lg-column(9);
+    }
   }
 }

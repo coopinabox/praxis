@@ -1,19 +1,23 @@
-<div>
+<header>
   <h2>tasks</h2>
-  <button on-click="create" class="btn btn-default">+</button>
-  {{#tasks}}
-  <form role="form" class="task-form form-inline">
+  <span class="btn-group">
+    <button class="create" on-click="create">+</button>
+  </span>
+</header>
+{{#tasks}}
+<section>
+  <form role="form" class="task-form">
     <div class="buttons">
-      <button on-click="remove" class="btn btn-danger">-</button>
+      <button class="remove" on-click="remove">-</button>
     </div>
     <div class="name-group form-group">
       <label for="task{{id}}name">name</label>
-      <input value="{{.name}}" name="name" type="text" class="form-control" id="task{{id}}name" placeholder="empty name" proxy-change="modified" />
+      <input value="{{.name}}" name="name" type="text" class="form-control" id="task{{id}}name" placeholder="empty name" proxy-change="modified" data-error-style="inline" />
     </div>
     <div class="description-group form-group">
       <label for="task{{id}}description">description</label>
-      <textarea value="{{.description}}" name="description" class="form-control" id="task{{id}}description" placeholder="empty description" proxy-change="modified" />
+      <textarea value="{{.description}}" name="description" class="form-control" id="task{{id}}description" placeholder="empty description" proxy-change="modified" data-error-style="inline" />
     </div>
   </form>
-  {{/tasks}}
-</div>
+</section>
+{{/tasks}}
