@@ -1,1 +1,1 @@
-require('./server');
+module.exports = require('./src');

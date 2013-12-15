@@ -2,7 +2,7 @@ var feathers = require('feathers');
 
 var app = feathers()
   .configure(feathers.socketio())
-  .use('/tasks', require('./services/tasks'))
+  .use('/tasks', require('./tasks/service'))
 
 //  .listen(5000);
 

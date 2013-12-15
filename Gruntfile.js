@@ -32,7 +32,7 @@ module.exports = function (grunt) {
   var defaultBanner = '/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd") %> */\n';
   var lessPaths = [
     'node_modules/bootstrap/less/',
-    'client/',
+    'src/',
   ];
   var fontFiles = [
     'node_modules/bootstrap/fonts/*',
@@ -61,7 +61,7 @@ module.exports = function (grunt) {
         },
       },
       'app': {
-        'src': 'client/index.js',
+        'src': 'src/client.js',
         'dest': 'build/js/app.js',
         'options': {
           'debug': true,
@@ -85,7 +85,7 @@ module.exports = function (grunt) {
         'compress': false,
       },
       'build': {
-        'src': 'client/index.less',
+        'src': 'src/index.less',
         'dest': 'build/css/index.css',
       },
     },
@@ -93,8 +93,8 @@ module.exports = function (grunt) {
     'copy': {
       'html': {
         'expand': true,
-        'cwd': 'client/',
-        'src': '**/*.html',
+        'cwd': 'src/',
+        'src': 'index.html',
         'dest': 'build/',
       },
       'fonts': {
@@ -115,7 +115,7 @@ module.exports = function (grunt) {
     'express': {
       'server': {
         'options': {
-          'server': './server/index.js',
+          'server': './index.js',
           'bases': 'build',
           'livereload': true,
           'port': 5000,
@@ -129,15 +129,15 @@ module.exports = function (grunt) {
         'tasks': ['build'],
       },
       'html': {
-        'files': ['client/**/*.html'],
+        'files': ['src/index.html'],
         'tasks': ['html'],
       },
       'js': {
-        'files': ['client/**/*.js', 'server/**/*.js'],
+        'files': ['src/**/*.js', 'src/**/*.html'],
         'tasks': ['js'],
       },
       'css': {
-        'files': ['client/**/*.less'],
+        'files': ['src/**/*.less'],
         'tasks': ['css']
       },
       // TODO watch assets
@@ -184,7 +184,7 @@ module.exports = function (grunt) {
     },
 
     'knexmigrate': {
-      'config': __dirname + '/server/db/config.js',
+      'config': __dirname + '/src/db/config.js',
     },
   });
 };

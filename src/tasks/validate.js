@@ -1,7 +1,7 @@
 var validator = require('checkit');
 var promise = require('bluebird');
 
-module.exports.validate = function (task) {
+module.exports = function (task) {
 
   var defer = promise.defer();
 

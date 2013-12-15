@@ -1,18 +1,5 @@
-var promise = require('bluebird');
-
-var validate = require('../../shared/models/task').validate
-var db = require('../db');
-
-var Model = db.Model.extend({
-  tableName: 'tasks',
-});
-
-var Collection = db.Collection.extend({
-  model: Model,
-  initialize: function () {
-    this.fetch();
-  },
-});
+var Collection = require('./collection.server');
+var validate = require('./validate');
 
 module.exports = {
 
@@ -66,5 +53,4 @@ module.exports = {
       throw err;
     });
   },
-
 }
