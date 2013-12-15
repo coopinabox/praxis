@@ -1,3 +1,5 @@
+"use strict";
+
 // add validation to backbone
 
 var _ = require('underscore');

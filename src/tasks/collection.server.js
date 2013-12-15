@@ -1,3 +1,5 @@
+"use strict";
+
 var db = require('../db');
 
 var Model = require('./model.server');

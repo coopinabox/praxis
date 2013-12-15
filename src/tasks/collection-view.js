@@ -1,3 +1,5 @@
+"use strict";
+
 var Ractive = require('ractive');
 require('ractive-backbone');
 var validation = require('backbone-validation');

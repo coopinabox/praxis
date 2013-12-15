@@ -1,3 +1,5 @@
+"use strict";
+
 var Collection = require('./collection.server');
 
 module.exports = {
@@ -42,4 +44,4 @@ module.exports = {
       cb(err);
     });
   },
-}
+};

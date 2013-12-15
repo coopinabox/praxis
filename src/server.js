@@ -1,3 +1,5 @@
+"use strict";
+
 var feathers = require('feathers');
 var ecstatic = require('ecstatic');
 

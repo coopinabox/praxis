@@ -1,3 +1,5 @@
+"use strict";
+
 // add validation to bookshelf
 var db = require('./db');
 var validation = require('backbone-validation');

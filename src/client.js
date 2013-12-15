@@ -1,3 +1,5 @@
+"use strict";
+
 var version = require('../package.json').version;
 
 var $ = jQuery = require('jquery/dist/jquery')(window);

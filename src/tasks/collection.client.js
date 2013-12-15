@@ -1,3 +1,5 @@
+"use strict";
+
 var bb = require('backbone');
 
 var Model = require('./model.client');

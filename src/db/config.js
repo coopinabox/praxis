@@ -1,4 +1,4 @@
-module.exports = {  
+module.exports = {
   directory: __dirname + "/migrations",
   tableName: "db_migrations",
   database: {
