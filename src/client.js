@@ -1,4 +1,6 @@
-// attach global jquery to backbone
+var $ = jQuery = require('jquery/dist/jquery')(window);
+require('bootstrap/dist/js/bootstrap');
+// attach jquery to backbone
 require('backbone').$ = $;
 
 var fs = require('fs');

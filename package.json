@@ -26,32 +26,27 @@
     "ractive-backbone": "git+https://github.com/ahdinosaur/Ractive-adaptors-Backbone.git",
     "backbone-validation": "~0.9.0",
     "should": "~2.1.1",
-    "mocha": "~1.15.1"
+    "brfs": "0.0.8",
+    "mocha": "~1.15.1",
+    "less": "~1.5.1",
+    "browserify": "~3.3.0"
   },
   "devDependencies": {
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt": "~0.4.1",
-    "grunt-browserify": "~1.3.0",
-    "grunt-express": "~1.2.1",
-    "grunt-contrib-less": "~0.8.1",
-    "brfs": "0.0.8",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-hashres": "~0.3.3",
-    "grunt-contrib-uglify": "~0.2.5",
-    "grunt-spritesmith": "~1.11.3",
-    "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-cssmin": "~0.7.0",
-    "grunt-contrib-concat": "~0.3.0",
-    "napa": "~0.2.0",
-    "grunt-knex-migrate": "0.0.2",
     "should": "~2.1.1",
     "mocha": "~1.15.1",
-    "grunt-mocha-test": "~0.8.1"
+    "catw": "~0.2.0",
+    "watchify": "~0.4.1",
+    "nodemon": "~0.7.10"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha test/server/**/*.js",
-    "server": "./index.js",
-    "install": "napa"
-  },
-  "napa": {}
+    "test": "mocha test/server/**/*.js",
+    "build-js": "browserify -t brfs src/client.js | uglifyjs -mc > static/index.js",
+    "build-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/*.less' | cssmin > static/index.css",
+    "build": "npm run build-css && npm run build-js",
+    "watch-js": "watchify -t brfs src/client.js -o static/index.js -dv",
+    "watch-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/*.less' -o static/index.css -v",
+    "watch": "npm run watch-css & npm run watch-js",
+    "develop": "npm run watch & nodemon index.js",
+    "start": "npm run build && node index.js"
+  }
 }

@@ -1,4 +1,5 @@
 db.sqlite
-/build
+/static/index.js
+/static/index.css
 node_modules
 *.swp
