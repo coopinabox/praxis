@@ -10,7 +10,7 @@ a time keeper for work shifts
 npm install
 npm run start
 ```
-browse to [http://localhost:8000]
+browse to [http://localhost:5000]
 
 ## how to develop
 
