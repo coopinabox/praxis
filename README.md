@@ -8,6 +8,18 @@ a time keeper for work shifts
 
 ```
 npm install
-grunt
+npm run start
 ```
 browse to [http://localhost:8000]
+
+## how to develop
+
+```
+npm run develop
+```
+
+## how to test
+
+```
+npm run test
+```
