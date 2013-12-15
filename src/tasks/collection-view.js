@@ -7,7 +7,7 @@ var fs = require('fs');
 module.exports = function (tasks, el) {
   var taskView = new Ractive({
     el: el,
-    template: fs.readFileSync(__dirname + '/template.html'),
+    template: fs.readFileSync(__dirname + '/collection.html'),
     adaptors: ['Backbone'],
     data: {
       tasks: tasks,
