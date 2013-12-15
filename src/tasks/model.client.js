@@ -2,10 +2,9 @@ var bb = require('backbone');
 
 module.exports = bb.Model.extend({
   initialize: function () {
+    var self = this;
     this.on('change', function () {
-      if (this.hasChanged()) {
-        this.save();
-      }
+      self.validate();
     });
   },
   validation: require('./validation'),

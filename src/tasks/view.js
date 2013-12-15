@@ -12,14 +12,21 @@ module.exports = function (tasks, el) {
     data: {
       tasks: tasks,
     },
-    lazy: true,
   });
-  taskView.on('create', function (event) {
-    var task = tasks.create({});
-    console.log("task create", task);
-  });
-  taskView.on('remove', function (event) {
-    tasks.get(event.context).destroy();
+  taskView.on({
+    // bind create
+    create: function (event) {
+      var task = tasks.create({});
+      console.log("task create", task);
+    },
+    // bind destroy
+    remove: function (event) {
+      tasks.get(event.context).destroy();
+    },
+    // bind save
+    modified: function (event) {
+      tasks.get(event.context).save();
+    },
   });
   // bind view to collection
   validation.bind(taskView, {
