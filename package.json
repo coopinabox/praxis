@@ -31,7 +31,8 @@
     "less": "~1.5.1",
     "browserify": "~3.3.0",
     "knex": "~0.5.1",
-    "cssmin": "~0.4.1"
+    "cssmin": "~0.4.1",
+    "uglifyjs": "~2.3.6"
   },
   "devDependencies": {
     "should": "~2.1.1",
