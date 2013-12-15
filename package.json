@@ -51,7 +51,7 @@
     "watch-js": "watchify -t brfs src/client.js -o static/index.js -dv",
     "watch-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/index.less' -o static/index.css -v",
     "watch": "npm run watch-css & npm run watch-js",
-    "test": "mocha test/server/**/*.js",
+    "test": "mocha -R tap test/server/**/*.js",
     "lint": "jshint src/**/*.js test/**/*.js; true",
     "develop": "npm run migrate && $(npm run watch & nodemon index.js)",
     "start": "npm run migrate && npm run build && node index.js",
