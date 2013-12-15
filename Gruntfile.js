@@ -12,6 +12,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-spritesmith');
   grunt.loadNpmTasks('grunt-hashres');
   grunt.loadNpmTasks('grunt-knex-migrate');
+  grunt.loadNpmTasks('grunt-mocha-test');
 
   grunt.registerTask('default', ['dev']);
   grunt.registerTask('html', ['copy:html']);
@@ -21,9 +22,10 @@ module.exports = function (grunt) {
   grunt.registerTask('assets', ['copy:assets', 'copy:fonts']);
   grunt.registerTask('build', ['clean', 'html', 'js', 'css', 'assets']);
   grunt.registerTask('server', ['express']);
-  grunt.registerTask('dev', ['build', 'db', 'server', 'watch']);
+  grunt.registerTask('test', ['mochaTest']);
+  grunt.registerTask('dev', ['build', 'db', 'server', 'test', 'watch']);
   grunt.registerTask('minify', ['cssmin', 'uglify']);
-  grunt.registerTask('prod', ['build', 'db', 'minify', 'hashres']);
+  grunt.registerTask('prod', ['build', 'db', 'test', 'minify', 'hashres']);
 
   var jsVendors = [
     'node_modules/jquery/dist/jquery',
@@ -126,19 +128,19 @@ module.exports = function (grunt) {
     'watch': {
       'all': {
         'files': ['Gruntfile.js'],
-        'tasks': ['build'],
+        'tasks': ['build', 'test'],
       },
       'html': {
         'files': ['src/index.html'],
-        'tasks': ['html'],
+        'tasks': ['html', 'test'],
       },
       'js': {
         'files': ['src/**/*.js', 'src/**/*.html'],
-        'tasks': ['js'],
+        'tasks': ['js', 'test'],
       },
       'css': {
         'files': ['src/**/*.less'],
-        'tasks': ['css']
+        'tasks': ['css', 'test']
       },
       // TODO watch assets
       //'assets': {
@@ -185,6 +187,15 @@ module.exports = function (grunt) {
 
     'knexmigrate': {
       'config': __dirname + '/src/db/config.js',
+    },
+
+    'mochaTest': {
+      'test': {
+        'options': {
+          'reporter': 'spec',
+        },
+        'src': ['test/server/**/*.js'],
+      },
     },
   });
 };

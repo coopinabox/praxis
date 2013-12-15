@@ -1,8 +1,9 @@
 var db = require('../db');
 
+require('../validation.server');
+
 module.exports = db.Model.extend({
   tableName: 'tasks',
-  validation: require('./validation'),
   defaults: {
     name: "",
     description: "",
@@ -14,4 +15,5 @@ module.exports = db.Model.extend({
       if (err) throw err;
     });
   },
+  validation: require('./validation'),
 });
