@@ -1,28 +1,19 @@
 <div>
-  <table class="table table-bordered table-hover table-condensed">
-    <thead class="lead">
-      <tr>
-        <th>task</th>
-        <th>description</th>
-        <th><button on-click="create" class="btn btn-default">+</button></th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#tasks}}
-      <tr>
-        <td>
-          <input value='{{ .name }}' />
-        </td>
-        <td>
-          <input value='{{ .description }}' />
-        </td>
-        <td>
-          <div class="buttons">
-            <button on-click="remove" class="btn btn-danger">-</button>
-          </div>
-        </td>
-      </tr>
-      {{/tasks}}
-    </tbody>
-  </table>
+  <h2>tasks</h2>
+  <button on-click="create" class="btn btn-default">+</button>
+  {{#tasks}}
+  <form role="form" class="task-form form-inline">
+    <div class="buttons">
+      <button on-click="remove" class="btn btn-danger">-</button>
+    </div>
+    <div class="name-group form-group">
+      <label for="task{{id}}name">name</label>
+      <input type="text" class="form-control" id="task{{id}}name" placeholder="empty name" value="{{.name}}" />
+    </div>
+    <div class="description-group form-group">
+      <label for="task{{id}}description">description</label>
+      <textarea class="form-control" id="task{{id}}description" placeholder="empty description" value="{{.description}}" />
+    </div>
+  </form>
+  {{/tasks}}
 </div>

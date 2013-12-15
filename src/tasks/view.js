@@ -1,5 +1,6 @@
 var Ractive = require('ractive');
 require('ractive-backbone');
+var validation = require('backbone-validation');
 
 var fs = require('fs');
 
@@ -19,6 +20,10 @@ module.exports = function (tasks, el) {
   });
   taskView.on('remove', function (event) {
     tasks.get(event.context).destroy();
+  });
+  // bind view to collection
+  validation.bind(taskView, {
+    collection: tasks,
   });
   return taskView;
 };
