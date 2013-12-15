@@ -1,5 +1,4 @@
 var Collection = require('./collection.server');
-var validate = require('./validate');
 
 module.exports = {
 
@@ -16,32 +15,22 @@ module.exports = {
   },
 
   create: function (data, params, cb) {
-    var self = this;
-    validate(data).then(function () {
-      self.collection.create(data, params)
-        .then(function (model) {
-          cb(null, model);
-        }, function (err) {
-          throw err;
-        });
-    }, function (errors) {
-      cb(errors);
-    });
+    this.collection.create(data, params)
+      .then(function (model) {
+        cb(null, model);
+      }, function (err) {
+        cb(err);
+      });
   },
 
   update: function (id, data, params, cb) {
-    var self = this;
-    validate(data).then(function () {
-      self.collection.get(id)
-        .save(data, { patch: true })
-        .then(function (model) {
-          cb(null, model);
-        }, function (err) {
-          throw err;
-        });
-    }, function (errors) {
-      cb(errors);
-    });
+    this.collection.get(id)
+      .save(data, { patch: true })
+      .then(function (model) {
+        cb(null, model);
+      }, function (err) {
+        cb(err);
+      });
   },
 
   remove: function (id, params, cb) {
@@ -50,7 +39,7 @@ module.exports = {
     ).destroy().then(function (result) {
       cb();
     }, function (err) {
-      throw err;
+      cb(err);
     });
   },
 }
