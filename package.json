@@ -29,7 +29,8 @@
     "brfs": "0.0.8",
     "mocha": "~1.15.1",
     "less": "~1.5.1",
-    "browserify": "~3.3.0"
+    "browserify": "~3.3.0",
+    "knex": "~0.5.1"
   },
   "devDependencies": {
     "should": "~2.1.1",
@@ -40,13 +41,14 @@
   },
   "scripts": {
     "test": "mocha test/server/**/*.js",
+    "migrate": "knex --config src/db/config.js migrate:latest",
     "build-js": "browserify -t brfs src/client.js | uglifyjs -mc > static/index.js",
     "build-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/*.less' | cssmin > static/index.css",
     "build": "npm run build-css && npm run build-js",
     "watch-js": "watchify -t brfs src/client.js -o static/index.js -dv",
     "watch-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/*.less' -o static/index.css -v",
     "watch": "npm run watch-css & npm run watch-js",
-    "develop": "npm run watch & nodemon index.js",
-    "start": "npm run build && node index.js"
+    "develop": "npm run migrate && $(npm run watch & nodemon index.js)",
+    "start": "npm run migrate && npm run build && node index.js"
   }
 }
