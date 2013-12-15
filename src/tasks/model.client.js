@@ -7,9 +7,6 @@ module.exports = bb.Model.extend({
         this.save();
       }
     });
-    this.on('invalid', function (model, error) {
-      console.error("invalid model", model, error);
-    });
   },
   validation: require('./validation'),
 });
