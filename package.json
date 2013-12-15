@@ -39,7 +39,8 @@
     "mocha": "~1.15.1",
     "catw": "~0.2.0",
     "watchify": "~0.4.1",
-    "nodemon": "~0.7.10"
+    "nodemon": "~0.7.10",
+    "release-utils": "0.0.4"
   },
   "scripts": {
     "test": "mocha test/server/**/*.js",
@@ -51,6 +52,7 @@
     "watch-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/index.less' -o static/index.css -v",
     "watch": "npm run watch-css & npm run watch-js",
     "develop": "npm run migrate && $(npm run watch & nodemon index.js)",
-    "start": "npm run migrate && npm run build && node index.js"
+    "start": "npm run migrate && npm run build && node index.js",
+    "release": "node node_modules/release-utils/npm-release.js"
   }
 }
