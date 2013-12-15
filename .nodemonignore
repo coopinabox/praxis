@@ -1,0 +1,6 @@
+/static/*
+db.sqlite*
+/.git/*
+/README.md
+*.less
+*.swp
