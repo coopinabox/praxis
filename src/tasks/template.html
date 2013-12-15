@@ -8,11 +8,11 @@
     </div>
     <div class="name-group form-group">
       <label for="task{{id}}name">name</label>
-      <input type="text" class="form-control" id="task{{id}}name" placeholder="empty name" value="{{.name}}" />
+      <input value="{{.name}}" name="name" type="text" class="form-control" id="task{{id}}name" placeholder="empty name" />
     </div>
     <div class="description-group form-group">
       <label for="task{{id}}description">description</label>
-      <textarea class="form-control" id="task{{id}}description" placeholder="empty description" value="{{.description}}" />
+      <textarea value="{{.description}}" name="description" class="form-control" id="task{{id}}description" placeholder="empty description" />
     </div>
   </form>
   {{/tasks}}
