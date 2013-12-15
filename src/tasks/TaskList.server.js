@@ -2,10 +2,10 @@
 
 var db = require('../db');
 
-var Model = require('./model.server');
+var Task = require('./Task.server');
 
 module.exports = db.Collection.extend({
-  model: Model,
+  model: Task,
   initialize: function () {
     this.fetch();
   },

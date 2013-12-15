@@ -13,7 +13,7 @@ $('head > title').text(version);
 $('body > header').html(headerHtml);
 $('.brand').text(version);
 
-var Tasks = require('./tasks/collection.client');
-var tasks = new Tasks();
-var TasksView = require('./tasks/collection-view');
-var tasksView = TasksView(tasks, '.tasks');
+var TaskList = require('./tasks/TaskList.client');
+var taskList = new TaskList();
+var TaskListView = require('./tasks/TaskListView');
+var taskListView = TaskListView(taskList, '.tasks');
