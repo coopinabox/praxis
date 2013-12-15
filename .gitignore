@@ -5,3 +5,4 @@ db.sqlite
 /static/.index.css*
 node_modules
 *.swp
+/target
