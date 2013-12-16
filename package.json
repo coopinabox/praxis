@@ -47,13 +47,11 @@
     "files": "test/**/*.js",
     "harness": "mocha",
     "browsers": [
-      "ie/6..latest",
-      "firefox/3..5",
+      "ie/10..latest",
       "firefox/19..nightly",
-      "chrome/4..7",
       "chrome/24..canary",
-      "opera/10..next",
-      "safari/4..latest",
+      "opera/15..next",
+      "safari/6..latest",
       "iphone/6",
       "ipad/6"
     ]
