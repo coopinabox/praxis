@@ -1,17 +1,8 @@
 "use strict";
 
-var feathers = require('feathers');
-var ecstatic = require('ecstatic');
+var server = require('server');
+var isProd = require('utils').isProd;
 
-var isProd = (process.env.NODE_ENV === 'production')
+server.listen(isProd ? 80 : 5000);
 
-var app = feathers()
-  .configure(feathers.socketio())
-  .use('/tasks', require('tasks-server/service'))
-  .use(ecstatic({
-    root: __dirname + '/../static',
-    cache: (isProd ? 3600 : 0),
-  }))
-  .listen(5000);
-
-module.exports = app;
+module.exports = server;
