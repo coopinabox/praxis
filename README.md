@@ -1,5 +1,7 @@
 # workclock
 
+[![browser support](https://ci.testling.com/ahdinosaur/workclock.png)](https://ci.testling.com/ahdinosaur/workclock)
+
 ### IN PROGRESS
 
 a time keeper for work shifts
