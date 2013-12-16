@@ -1,6 +1,6 @@
 {
   "name": "workclock",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "a time keeper for work shifts",
   "main": "./index.js",
   "browser": "./src/client.js",
