@@ -52,9 +52,9 @@
     "files": "src/**/*.client.test.js",
     "harness": "mocha",
     "browsers": [
-      "ie/10..latest",
-      "firefox/19..nightly",
-      "chrome/24..canary",
+      "ie/9..latest",
+      "firefox/17..nightly",
+      "chrome/23..canary",
       "opera/15..next",
       "safari/6..latest",
       "iphone/6",
