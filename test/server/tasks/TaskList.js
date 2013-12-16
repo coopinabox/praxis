@@ -2,9 +2,7 @@
 
 var should = require('should');
 
-var taskDir = '../../../src/tasks';
-
-var TaskList = require(taskDir + '/TaskList.server');
+var TaskList = require('tasks/TaskList.server');
 
 describe("TaskList", function () {
   var taskList = new TaskList();

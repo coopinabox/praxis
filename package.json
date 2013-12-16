@@ -44,14 +44,14 @@
     "jshint": "~2.3.0"
   },
   "scripts": {
-    "migrate": "knex --config src/db/config.js migrate:latest",
+    "migrate": "knex --config src/node_modules/db/config.js migrate:latest",
     "build-js": "browserify -t brfs src/client.js | uglifyjs -mc > static/index.js",
     "build-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/index.less' | cssmin > static/index.css",
     "build": "npm run build-css && npm run build-js",
     "watch-js": "watchify -t brfs src/client.js -o static/index.js -dv",
     "watch-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/index.less' -o static/index.css -v",
     "watch": "npm run watch-css & npm run watch-js",
-    "test": "mocha -R tap test/server/**/*.js",
+    "test": "NODE_PATH=./src/node_modules mocha -R tap test/server/**/*.js",
     "lint": "jshint src/**/*.js test/**/*.js; true",
     "develop": "npm run migrate && $(npm run watch & nodemon index.js)",
     "start": "npm run migrate && npm run build && node index.js",
