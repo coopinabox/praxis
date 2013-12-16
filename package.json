@@ -2,7 +2,8 @@
   "name": "workclock",
   "version": "0.1.1",
   "description": "a time keeper for work shifts",
-  "main": "index.js",
+  "main": "./index.js",
+  "browser": "./src/client.js",
   "repository": {
     "type": "git",
     "url": "http://github.com/ahdinosaur/workclock"
@@ -41,10 +42,14 @@
     "watchify": "~0.4.1",
     "nodemon": "~0.7.10",
     "release-utils": "0.0.4",
-    "jshint": "~2.3.0"
+    "jshint": "~2.3.0",
+    "testling": "~1.5.3"
+  },
+  "browserify": {
+    "transform": [ "brfs" ]
   },
   "testling": {
-    "files": "test/**/*.js",
+    "files": "test/client/**/*.js",
     "harness": "mocha",
     "browsers": [
       "ie/10..latest",
@@ -59,16 +64,18 @@
   },
   "scripts": {
     "migrate": "knex --config src/node_modules/db/config.js migrate:latest",
-    "build-js": "browserify -t brfs src/client.js | uglifyjs -mc > static/index.js",
+    "build-js": "browserify src/client.js | uglifyjs -mc > static/index.js",
     "build-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/index.less' | cssmin > static/index.css",
     "build": "npm run build-css && npm run build-js",
     "watch-js": "watchify -t brfs src/client.js -o static/index.js -dv",
     "watch-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/index.less' -o static/index.css -v",
     "watch": "npm run watch-css & npm run watch-js",
-    "test": "npm run migrate && NODE_PATH=./src/node_modules mocha test/server/**/*.js",
+    "test-server": "npm run migrate && NODE_PATH=./src/node_modules mocha test/server/**/*.js",
+    "test-client": "NODE_PATH=./src/node_modules testling",
+    "test": "npm run test-server",
     "lint": "jshint src/**/*.js test/**/*.js; true",
     "develop": "npm run migrate && $(npm run watch & nodemon index.js)",
-    "start": "npm run migrate && npm run build && node index.js",
+    "start": "npm run migrate && npm run build && node .",
     "release": "node node_modules/release-utils/npm-release.js"
   }
 }
