@@ -42,7 +42,7 @@
     "watchify": "~0.4.1",
     "nodemon": "~0.7.10",
     "jshint": "~2.3.0",
-    "testling": "git+https://github.com/substack/testling.git#1.5.5",
+    "testling": "~1.5.3",
     "npm-release": "0.0.4-3",
     "phantom": "~0.5.4"
   },
