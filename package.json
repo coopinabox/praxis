@@ -45,6 +45,7 @@
   },
   "testling": {
     "files": "test/**/*.js",
+    "harness": "mocha",
     "browsers": [
       "ie/6..latest",
       "firefox/3..5",
