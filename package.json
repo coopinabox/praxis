@@ -49,7 +49,7 @@
     "transform": [ "brfs" ]
   },
   "testling": {
-    "files": "src/**/*.client.test.js",
+    "files": "src/**/*-client/test/**/*.js",
     "harness": "mocha",
     "browsers": [
       "ie/9..latest",
@@ -70,7 +70,7 @@
     "watch-js": "watchify -t brfs src/client.js -o static/index.js -dv",
     "watch-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/index.less' -o static/index.css -v",
     "watch": "npm run watch-css & npm run watch-js",
-    "test-server": "(export NODE_ENV=test; npm run migrate && mocha src/**/*.server.test.js)",
+    "test-server": "(export NODE_ENV=test; npm run migrate && mocha src/**/*-server/test/**/*.js)",
     "test-client": "(export NODE_ENV=test; testling)",
     "test": "npm run test-server && npm run test-client",
     "lint": "jshint src/**/*.js ;true",

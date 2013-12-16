@@ -7,7 +7,7 @@ var isProd = (process.env.NODE_ENV === 'production')
 
 var app = feathers()
   .configure(feathers.socketio())
-  .use('/tasks', require('tasks/service'))
+  .use('/tasks', require('tasks-server/service'))
   .use(ecstatic({
     root: __dirname + '/../static',
     cache: (isProd ? 3600 : 0),

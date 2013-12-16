@@ -26,6 +26,6 @@ $(function() {
   $('head > title').text(version);
   $('.brand').text(version);
 
-  var TaskListView = require('tasks/TaskListView');
+  var TaskListView = require('tasks-client/TaskListView');
   var taskListView =  new TaskListView({ el: '.tasks' });
 });
