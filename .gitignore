@@ -3,6 +3,6 @@ db.sqlite
 /static/.index.js*
 /static/index.css
 /static/.index.css*
-node_modules
+/node_modules
 *.swp
 /target
