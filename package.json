@@ -70,7 +70,7 @@
     "watch-js": "watchify -t brfs src/client.js -o static/index.js -dv",
     "watch-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/index.less' -o static/index.css -v",
     "watch": "npm run watch-css & npm run watch-js",
-    "test-server": "npm run migrate && NODE_PATH=./src/node_modules mocha test/server/**/*.js",
+    "test-server": "NODE_ENV=test npm run migrate && NODE_PATH=./src/node_modules mocha test/server/**/*.js",
     "test-client": "NODE_PATH=./src/node_modules testling",
     "test": "npm run test-server",
     "lint": "jshint src/**/*.js test/**/*.js; true",
