@@ -2,8 +2,6 @@
 
 var $ = require('jquery/dist/jquery')(window);
 require('bootstrap/dist/js/bootstrap');
-// attach jquery to backbone
-require('backbone').$ = $;
 
 var fs = require('fs');
 

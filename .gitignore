@@ -1,4 +1,5 @@
 db.sqlite
+db.test.sqlite
 /static/index.js
 /static/.index.js*
 /static/index.css
