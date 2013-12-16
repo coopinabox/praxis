@@ -11,7 +11,7 @@ $(function() {
 
   // setup header
   $('body').append(
-      '<header>' + 
+      '<header>' +
         fs.readFileSync(__dirname + '/index.header.html') +
       '</header>'
       );
@@ -28,9 +28,6 @@ $(function() {
   $('head > title').text(version);
   $('.brand').text(version);
 
-  // setup tasks view
-  var TaskList = require('tasks/TaskList.client');
-  var taskList = new TaskList();
   var TaskListView = require('tasks/TaskListView');
-  var taskListView = TaskListView(taskList, '.tasks');
+  var taskListView =  new TaskListView({ el: '.tasks' });
 });
