@@ -72,7 +72,7 @@
     "watch": "npm run watch-css & npm run watch-js",
     "test-server": "(export NODE_ENV=test; npm run migrate && mocha src/**/*-{server,common}/test/**/*.js)",
     "test-client": "(export NODE_ENV=test; testling)",
-    "test": "npm run test-server && npm run test-client",
+    "test": "npm run test-server && (if [ -z \"$TRAVIS\" ]; then npm run test-client; fi)",
     "lint": "jshint src/**/*.js ;true",
     "develop": "npm run migrate && $(npm run watch & nodemon index.js)",
     "start": "npm run migrate && npm run build && node .",
