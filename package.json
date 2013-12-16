@@ -53,7 +53,8 @@
       "opera/15..next",
       "safari/6..latest",
       "iphone/6",
-      "ipad/6"
+      "ipad/6",
+      "android-browser/4.2"
     ]
   },
   "scripts": {
