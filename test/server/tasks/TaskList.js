@@ -2,31 +2,32 @@
 
 var should = require('should');
 
-var taskDir = '../../src/tasks/';
+var taskDir = '../../../src/tasks';
 
-var Collection = require(taskDir + '/collection.server');
+var TaskList = require(taskDir + '/TaskList.server');
 
-describe("Collection", function () {
-  var collection = new Collection();
-  beforeEach(function () {
-    collection.reset();
-  });
+describe("TaskList", function () {
+  var taskList = new TaskList();
+
   describe(".create", function () {
+    beforeEach(function () {
+      taskList.reset();
+    });
     it("should have correct defaults", function (done) {
-      collection.create({}).then(function (model) {
-        model.id
+      taskList.create({}).then(function (task) {
+        task.id
           .should.be.type('number');
-        model.get('name')
+        task.get('name')
           .should.be.type('string')
           .and.equal('');
-        model.get('description')
+        task.get('description')
           .should.be.type('string')
           .and.equal('');
         done();
       });
     });
     it("should not allow invalid data", function (done) {
-      collection.create({
+      taskList.create({
         "name": "areallylongnamethatissolong",
         "description": "",
       }).then(function (data) {
