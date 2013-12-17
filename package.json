@@ -33,7 +33,9 @@
     "browserify": "~3.3.0",
     "knex": "~0.5.1",
     "cssmin": "~0.4.1",
-    "uglify-js": "~2.4.7"
+    "uglify-js": "~2.4.7",
+    "seraph": "~0.9.4",
+    "seraph-model": "~0.5.5"
   },
   "devDependencies": {
     "should": "~2.1.1",
@@ -67,7 +69,7 @@
     ]
   },
   "scripts": {
-    "migrate": "knex --config src/node_modules/db/config.js migrate:latest",
+    "migrate": "knex --config src/node_modules/sql/config.js migrate:latest",
     "build-js": "browserify src/client.js | uglifyjs -mc > static/index.js",
     "build-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/index.less' | cssmin > static/index.css",
     "build": "npm run build-css && npm run build-js",
