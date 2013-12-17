@@ -52,8 +52,7 @@ npm run develop
 npm run test
 ```
 
-caveat:
-- to run integration tests, you need to install `[phantomjs](http://phantomjs.org/)`
+- to run integration tests, you need to install [`phantomjs`](http://phantomjs.org/)
   - `[sudo] npm install -g phantomjs`
-- to run client tests, you need to have `[xvfb](http://packages.debian.org/stable/xvfb)` installed
+- to run client tests, you need to install [`xvfb`](http://packages.debian.org/stable/xvfb)
   - `[sudo] apt-get install xvfb`
