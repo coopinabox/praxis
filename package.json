@@ -14,7 +14,7 @@
     "url": "https://github.com/ahdinosaur/workclock/issues"
   },
   "dependencies": {
-    "bootstrap": "git+https://github.com/twitter/bootstrap.git#v3.0.1",
+    "bootstrap": "git+https://github.com/twitter/bootstrap.git#v3.0.3",
     "ecstatic": "~0.4.12",
     "underscore": "~1.5.2",
     "bluebird": "~0.11.5-0",
@@ -30,7 +30,7 @@
     "brfs": "0.0.8",
     "mocha": "~1.15.1",
     "less": "~1.5.1",
-    "browserify": "~3.3.0",
+    "browserify": "~3.4.0",
     "knex": "~0.5.1",
     "cssmin": "~0.4.1",
     "uglify-js": "~2.4.7"
@@ -43,7 +43,7 @@
     "nodemon": "~0.7.10",
     "jshint": "~2.3.0",
     "testling": "~1.5.3",
-    "npm-release": "0.0.4-3",
+    "npm-release": "~0.0.4",
     "phantom": "~0.5.4",
     "sinon": "~1.7.3"
   },

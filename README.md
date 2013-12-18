@@ -1,6 +1,9 @@
 # workclock
 
 [![server tests](https://travis-ci.org/ahdinosaur/workclock.png)](https://travis-ci.org/ahdinosaur/workclock)
+[![npm version](https://badge.fury.io/js/workclock.png)](https://npmjs.org/package/workclock)]
+[![dependency status](https://david-dm.org/ahdinosaur/workclock.png)](https://david-dm.org/ahdinosaur/workclock)
+[![devDependency status](https://david-dm.org/ahdinosaur/workclock/dev-status.png)](https://david-dm.org/ahdinosaur/workclock#info=devDependencies)
 
 [![browser tests](https://ci.testling.com/ahdinosaur/workclock.png)](https://ci.testling.com/ahdinosaur/workclock)
 
