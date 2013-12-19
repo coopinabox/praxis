@@ -3,7 +3,7 @@
 1. plan actions in spaces
 2. beings assign weights to actions based on preference
 3. spaces assign weights to actions based on waste
-4. spaces sends offers
+4. spaces request offers
 5. beings execute offers
 6. other beings validate completed actions
 
