@@ -1,11 +1,21 @@
 ## workflow
 
-1. plan actions
-2. assign beings
-3. request times
-4. execute offer
+```yml
 
-## schemas:
+1. plan actions
+  - spaces describe requirements
+2. assign beings
+  - beings describe requirements
+3. time requests
+  - beings receive request by space
+4. execute offer
+  - being decides whether or not to do action in space
+5. validate actions
+  - other being validates whether or not activity done
+
+```
+
+## schemas
 
 ```yml
 
