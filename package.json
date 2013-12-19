@@ -36,7 +36,6 @@
     "uglify-js": "~2.4.7"
   },
   "devDependencies": {
-    "should": "~2.1.1",
     "mocha": "~1.15.1",
     "catw": "~0.2.0",
     "watchify": "~0.4.1",
