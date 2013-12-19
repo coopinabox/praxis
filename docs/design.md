@@ -2,16 +2,12 @@
 
 ```yml
 
-1. plan actions
-  - spaces describe requirements
-2. assign beings
-  - beings describe requirements
-3. time requests
-  - beings receive request by space
-4. execute offer
-  - being decides whether or not to do action in space
-5. validate actions
-  - other being validates whether or not activity done
+1. plan actions in spaces
+2. beings assign weights to actions based on preference
+3. spaces assign weights to actions based on waste
+4. spaces sends offers
+5. beings execute offers
+6. other beings validate completed actions
 
 ```
 
