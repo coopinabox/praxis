@@ -1,43 +1,56 @@
 ## workflow
 
-1. plan possible actions in spaces
-2. beings assign weights to actions based on preference
-3. spaces assign weights to actions based on waste
-4. spaces request offers
-5. beings execute offers by completing action
-6. other beings validate completed actions
+1. beings plan possible actions in spaces
+3. beings assign weights to actions based on preference
+2. beings assign weights to time ranges based on availability
+4. spaces assign weights to actions based on status
+5. space request action offer to beings in space
+6. being executes offer by completing action
+7. other beings validate completed action
+8. upon validation, being receives reward
 
 ## schemas
 
 ```yml
 
-beings:
-  - @id
-  - *nick
-  - [spaces]
-  - [actions]
+where
+  @ is an indexed property
+  * is a computed property
 
-(can use actions to
+Being:
+  - @id
+  - nick: string
+  - spaces: [Space]
+  - preferences: { Action: weight }
+  - availability: { TimeRange: weight }
+  - *upcoming: [Offer]
+  - *history: [Action]
+  - resources: { unit: quantity }
+
+(can use [Action] to
 schedule non-work activity)
 
-spaces:
+Space:
   - @id
-  - *topic
-  - [beings]
+  - topic: string
+  - beings: [Being]
+  - need: { Action: weight }
 
-actions:
+Action:
   - @id
-  - @space
-  - *name
-  - weight
-  - [instructions]
+  - @space: Space
+  - name: string
+  - instructions: [string]
 
-offer:
+Offer:
   - @id
-  - ask @being
-  - buy @being
-  - [actions]
-  - reward
-  - time
+  - @being
+  - actions: [Action]
+  - reward: (unit, quantity)
+  - time: TimeRange
+
+TimeRange: http://gf3.github.io/moment-range/
+  - @start
+  - @end
 
 ```
