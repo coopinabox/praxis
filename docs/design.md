@@ -3,7 +3,7 @@
 1. beings plan possible actions in spaces
 2. beings assign weights to actions based on preference
 3. beings assign weights to time ranges based on availability
-4. spaces assign weights to actions based on status
+4. spaces assign weights to actions based on need
 5. space request action offer to beings in space
 6. being executes offer by completing action
 7. other beings validate completed action
