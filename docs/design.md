@@ -16,6 +16,8 @@
 where
   @ is an indexed property
   * is a computed property
+  [item] means list of items
+  { key: value } means map of (key, value) pairs
 
 Being:
   - @id
