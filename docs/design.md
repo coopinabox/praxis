@@ -1,13 +1,12 @@
 ## workflow
 
-1. beings plan possible actions in spaces
-2. beings assign weights to actions based on preference
-3. beings assign weights to time ranges based on availability
-4. spaces assign weights to actions based on need
-5. space request action offer to beings in space
-6. being executes offer by completing action
-7. other beings validate completed action
-8. upon validation, being receives reward
+1. child holons plan possible actions in parent holon
+2. holons assign weights to actions based on preference
+3. holons assign weights to time ranges based on availability
+4. parent holon request action offer to child holons
+5. child holon executes offer by completing action
+6. other holons validate completed action
+7. upon validation, holon receives reward
 
 ## schemas
 
@@ -21,30 +20,30 @@ where
 
 Being:
   - @id
+  - holons: [Holon]
+
+Holon:
+  - @id
   - nick: string
-  - spaces: [Space]
+  - topic: string
+  - children: Being or [Holon]
+  - parents: [Holon]
   - preferences: { Action: weight }
   - availability: { MomentRange: weight }
   - resources: { unit: quantity }
   - *upcoming: [Offer]
   - *history: [Action]
 
-Space:
-  - @id
-  - topic: string
-  - beings: [Being]
-  - need: { Action: weight }
-
 Action:
   - @id
-  - @space: Space
+  - @receiver: Holon
   - name: string
   - instructions: [string]
   - duration: Duration (http://momentjs.com/docs/#/durations/)
 
 Offer:
   - @id
-  - @being: Being
+  - @actor: Holon
   - action: Action
   - reward: (unit, quantity)
   - timeStart: Moment (http://momentjs.com/)
