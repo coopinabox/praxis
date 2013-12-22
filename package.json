@@ -22,9 +22,8 @@
     "sqlite3": "~2.1.19",
     "feathers": "~0.2.0",
     "jquery": "~2.1.0-beta2",
-    "ractive": "~0.3.7",
     "backbone": "~1.1.0",
-    "ractive-backbone": "git+https://github.com/ahdinosaur/Ractive-adaptors-Backbone.git",
+    "react.backbone": "git+https://github.com/ahdinosaur/react.backbone.git",
     "backbone-validation": "~0.9.0",
     "should": "~2.1.1",
     "brfs": "0.0.8",
@@ -32,7 +31,10 @@
     "browserify": "~3.11.0",
     "knex": "~0.5.1",
     "cssmin": "~0.4.1",
-    "uglify-js": "~2.4.7"
+    "uglify-js": "~2.4.7",
+    "reactify": "~0.5.0",
+    "envify": "~0.2.0",
+    "react": "~0.8.0"
   },
   "devDependencies": {
     "mocha": "~1.16.0",
@@ -48,7 +50,8 @@
   },
   "browserify": {
     "transform": [
-      "brfs"
+      "brfs",
+      "reactify"
     ]
   },
   "testling": {
@@ -70,7 +73,7 @@
     "build-js": "browserify src/client.js | uglifyjs -mc > static/index.js",
     "build-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/index.less' | cssmin > static/index.css",
     "build": "npm run build-css && npm run build-js",
-    "watch-js": "watchify -t brfs src/client.js -o static/index.js -dv",
+    "watch-js": "watchify src/client.js -o static/index.js -dv",
     "watch-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/index.less' -o static/index.css -v",
     "watch": "npm run watch-css & npm run watch-js",
     "test-server": "(export NODE_ENV=test; npm run migrate && mocha -t 10s src/**/*-{server,common}/test/**/*.js)",

@@ -7,6 +7,8 @@ var fs = require('fs');
 
 $(function() {
 
+  var React = require('react');
+
   // setup header
   $('body').append(
       '<header>' +
@@ -26,6 +28,9 @@ $(function() {
   $('head > title').text(version);
   $('.brand').text(version);
 
+  var TaskList = require('tasks-client/TaskList');
+  var taskList = new TaskList();
   var TaskListView = require('tasks-client/TaskListView');
-  var taskListView =  new TaskListView({ el: '.tasks' });
+  var taskListView = TaskListView({ model: taskList });
+  React.renderComponent(taskListView, document.querySelector('.tasks'));
 });
