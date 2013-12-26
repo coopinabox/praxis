@@ -1,11 +1,11 @@
-# workclock
+# tasks
 
-[![server tests](https://travis-ci.org/ahdinosaur/workclock.png)](https://travis-ci.org/ahdinosaur/workclock)
-[![npm version](https://badge.fury.io/js/workclock.png)](https://npmjs.org/package/workclock)
-[![dependency status](https://david-dm.org/ahdinosaur/workclock.png)](https://david-dm.org/ahdinosaur/workclock)
-[![devDependency status](https://david-dm.org/ahdinosaur/workclock/dev-status.png)](https://david-dm.org/ahdinosaur/workclock#info=devDependencies)
+[![server tests](https://travis-ci.org/holonomy/tasks.png)](https://travis-ci.org/holonomy/tasks)
+[![npm version](https://badge.fury.io/js/holonomy-tasks.png)](https://npmjs.org/package/holonomy-tasks)
+[![dependency status](https://david-dm.org/holonomy/tasks.png)](https://david-dm.org/holonomy/tasks)
+[![devDependency status](https://david-dm.org/holonomy/tasks/dev-status.png)](https://david-dm.org/holonomy/tasks#info=devDependencies)
 
-[![browser tests](https://ci.testling.com/ahdinosaur/workclock.png)](https://ci.testling.com/ahdinosaur/workclock)
+[![browser tests](https://ci.testling.com/holonomy/tasks.png)](https://ci.testling.com/holonomy/tasks)
 
 ### IN PROGRESS
 
@@ -29,10 +29,10 @@ nvm alias default 0.10
 
 it's a good idea to put the 2nd line in your ~/.bashrc, ~/.zshrc, ~/.profile, etc to source nvm automatically upon login.
 
-### workclock
+### tasks
 
 ```
-git clone https://github.com/ahdinosaur/workclock
+git clone https://github.com/holonomy/tasks
 npm install
 ```
 
