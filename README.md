@@ -9,7 +9,7 @@
 
 ### IN PROGRESS
 
-a time keeper for work shifts
+a holonic task management system
 
 ## how to install
 
