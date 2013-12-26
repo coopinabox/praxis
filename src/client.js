@@ -14,7 +14,7 @@ $(function() {
 
   // setup header
   React.renderComponent(
-    HeaderView(),
+    new HeaderView(),
     document.querySelector('header')
   );
 

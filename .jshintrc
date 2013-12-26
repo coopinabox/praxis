@@ -20,5 +20,6 @@
   "undef": true,
   "strict": true,
   "trailing": true,
-  "multistr": true
+  "multistr": true,
+  "expr": true
 }
