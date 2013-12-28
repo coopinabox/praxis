@@ -34,7 +34,8 @@
     "uglify-js": "~2.4.7",
     "reactify": "~0.5.0",
     "envify": "~0.2.0",
-    "react": "~0.8.0"
+    "react": "~0.8.0",
+    "create-error": "~0.3.1"
   },
   "devDependencies": {
     "mocha": "~1.16.0",
