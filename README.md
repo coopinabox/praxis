@@ -11,6 +11,8 @@
 
 a holonic task management system
 
+by [Berkeley Student Cooperative hackers](https://common.tnode.com/sympa/info/bsc-hackers)
+
 ## how to install
 
 - [nvm](https://github.com/creationix/nvm): node version manager
