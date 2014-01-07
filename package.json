@@ -79,7 +79,7 @@
     "watch-js": "watchify src/client.js -o static/index.js -dv",
     "watch-css": "catw -c 'lessc --include-path=src:node_modules/bootstrap/less -' 'src/index.less' -o static/index.css -v",
     "watch": "npm run watch-css & npm run watch-js",
-    "test-server": "(export NODE_ENV=test; npm run migrate && mocha -t 10s src/**/*-{server,common}/test/**/*.js)",
+    "test-server": "(export NODE_ENV=test; npm run migrate && mocha -R spec -t 10s src/**/*-{server,common}/test/**/*.js)",
     "test-client": "(export NODE_ENV=test; testling)",
     "test": "npm run test-server && (if [ -z \"$TRAVIS\" ]; then npm run test-client; fi)",
     "lint": "jshint src ;true",
