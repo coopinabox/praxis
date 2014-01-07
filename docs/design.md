@@ -12,45 +12,53 @@
 
 ```yml
 
-where
-  @ is an indexed property
-  * is a computed property
-  [item] means list of items
-  { key: value } means map of (key, value) pairs
-
-Being:
-  - @id
-  - holons: [Holon]
-
 Holon:
-  - @id
-  - nick: string
-  - topic: string
-  - children: Being or [Holon]
-  - parents: [Holon]
-  - preferences: { Action: weight }
-  - availability: { MomentRange: weight }
-  - resources: { unit: quantity }
-  - *upcoming: [Offer]
-  - *history: [Action]
+  - id
+  - children: belongsToMany(Holon).through(Edge)
+  - parents: belongsToMany(Holon).through(Edge)
+  - actionWeights: hasMany(ActionWeight)
+  - momentWeights: hasMany(MomentWeight)
+  - resources: hasMany(Resource)
+  - requests: hasMany(Request)
+  - actionHistory: hasMany(Action, 'completedBy')
+
+Unit:
+  - id
+  - name: string
+  - description: string
+  - resources: hasMany(Resource)
+  - maintenance: hasMany(Action)
+
+Resource:
+  - id
+  - unit: belongsTo(Unit)
+  - quantity: number
+  - maintenance: hasMany(Action).through(Unit)
 
 Action:
-  - @id
-  - @receiver: Holon
+  - id
+  - resource: belongsTo(Resource)
+  - completedBy: Holon
   - name: string
-  - instructions: [string]
-  - duration: Duration (http://momentjs.com/docs/#/durations/)
+  - description: [string]
+  - duration: duration (time quantity)
 
-Offer:
-  - @id
-  - @actor: Holon
-  - action: Action
-  - reward: (unit, quantity)
-  - timeStart: Moment (http://momentjs.com/)
-  - *timeRange: MomentRange
+MomentWeight:
+  - start: time
+  - end: time
+  - weight: number
+  - holon: belongsTo(Holon)
 
-MomentRange: http://gf3.github.io/moment-range/
-  - start
-  - end
+ActionWeight:
+  - action: belongsTo(Action)
+  - weight: number
+  - holon: belongsTo(Holon)
 
+Request:
+  - id
+  - requestee: belongsTo(Holon)
+  - action: belongsTo(Action)
+  - reward: belongsToMany(Resource)
+  - start: time
+  - *end: start + action.duration
 ```
