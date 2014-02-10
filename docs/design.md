@@ -1,26 +1,30 @@
 ## workflow
 
-1. child holons plan possible actions in parent holon
-2. holons assign weights to actions based on preference
-3. holons assign weights to time ranges based on availability
-4. parent holon request action offer to child holons
-5. child holon executes offer by completing action
-6. other holons validate completed action
-7. upon validation, holon receives reward
+1. persons plan possible actions in organization
+2. persons assign weights to actions based on preference
+3. persons assign weights to time ranges based on availability
+4. organization requests action offer to persons
+5. person executes offer by completing action
+6. other person validates completed action
+7. upon validation, person receives reward
 
 ## schemas
 
 ```yml
 
-Holon:
+Agent:
   - id
-  - children: belongsToMany(Holon).through(Edge)
-  - parents: belongsToMany(Holon).through(Edge)
-  - actionWeights: hasMany(ActionWeight)
-  - momentWeights: hasMany(MomentWeight)
   - resources: hasMany(Resource)
   - requests: hasMany(Request)
   - actionHistory: hasMany(Action, 'completedBy')
+  
+Person < Agent:
+  - name
+  - actionWeights: hasMany(ActionWeight)
+  - momentWeights: hasMany(MomentWeight)
+  
+Organization < Agent:
+  - name
 
 Unit:
   - id
@@ -38,7 +42,7 @@ Resource:
 Action:
   - id
   - resource: belongsTo(Resource)
-  - completedBy: Holon
+  - completedBy: Agent
   - name: string
   - description: [string]
   - duration: duration (time quantity)
@@ -47,16 +51,16 @@ MomentWeight:
   - start: time
   - end: time
   - weight: number
-  - holon: belongsTo(Holon)
+  - by: belongsTo(Agent)
 
 ActionWeight:
   - action: belongsTo(Action)
   - weight: number
-  - holon: belongsTo(Holon)
+  - by: belongsTo(Agent)
 
 Request:
   - id
-  - requestee: belongsTo(Holon)
+  - requestee: belongsTo(Agent)
   - action: belongsTo(Action)
   - reward: belongsToMany(Resource)
   - start: time
