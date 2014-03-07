@@ -1,23 +1,21 @@
-# tasks
+# praxis
 
-[![server tests](https://travis-ci.org/holonomy/tasks.png)](https://travis-ci.org/holonomy/tasks)
-[![npm version](https://badge.fury.io/js/holonomy-tasks.png)](https://npmjs.org/package/holonomy-tasks)
-[![dependency status](https://david-dm.org/holonomy/tasks.png)](https://david-dm.org/holonomy/tasks)
-[![devDependency status](https://david-dm.org/holonomy/tasks/dev-status.png)](https://david-dm.org/holonomy/tasks#info=devDependencies)
+[![server tests](https://travis-ci.org/coopinabox/praxis.png)](https://travis-ci.org/coopinabox/praxis)
+[![npm version](https://badge.fury.io/js/coopinabox-praxis.png)](https://npmjs.org/package/coopinabox-praxis)
+[![dependency status](https://david-dm.org/coopinabox/praxis.png)](https://david-dm.org/coopinabox/praxis)
+[![devDependency status](https://david-dm.org/coopinabox/praxis/dev-status.png)](https://david-dm.org/coopinabox/praxis#info=devDependencies)
 
-[![browser tests](https://ci.testling.com/holonomy/tasks.png)](https://ci.testling.com/holonomy/tasks)
+[![browser tests](https://ci.testling.com/coopinabox/praxis.png)](https://ci.testling.com/coopinabox/praxis)
 
 ### IN PROGRESS
 
-a holonic task management system
-
-by [Berkeley Student Cooperative hackers](https://common.tnode.com/sympa/info/bsc-hackers)
+a holonic action delegation system for Coop-in-a-Box
 
 ## how to install
 
 - [nvm](https://github.com/creationix/nvm): node version manager
 - [nodejs](http://nodejs.org): javascript interpreter
-- [npm](http://npmjs.org): javascriptpackage manager
+- [npm](http://npmjs.org): javascript package manager
 
 first you'll need to make sure your system has a c++ compiler. For OSX, XCode will work, for Ubuntu, the build-essential and libssl-dev packages work.
 
@@ -31,25 +29,24 @@ nvm alias default 0.10
 
 it's a good idea to put the 2nd line in your ~/.bashrc, ~/.zshrc, ~/.profile, etc to source nvm automatically upon login.
 
-### tasks
-
 ```
-git clone https://github.com/holonomy/tasks
+git clone https://github.com/coopinabox/praxis
 npm install
 ```
 
 ## how to run
 
 ```
-npm run start
+[sudo] npm run start
 ```
-browse to [localhost:5000](http://localhost:5000)
+browse to [localhost](http://localhost)
 
 ## how to develop
 
 ```
 npm run develop
 ```
+browse to [localhost:5000](http://localhost:5000)
 
 ## how to test
 

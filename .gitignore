@@ -4,7 +4,7 @@ db.test.sqlite
 /static/.index.js*
 /static/index.css
 /static/.index.css*
-/node_modules
+node_modules
 npm-debug.log
 *.swp
 /target

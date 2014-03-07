@@ -1,6 +1,5 @@
 "use strict";
 
-var feathers = require('feathers');
 var phantom = require('phantom');
 var expect = require('chai').expect;
 
@@ -11,7 +10,7 @@ describe("CRUD tasks", function () {
     phantom.create(function (ph) {
       ph.createPage(function (tab) {
         client = tab;
-        server = require('server');
+        server = require('../../lib/server');
         server.listen(4000, function () {
           done();
         });
@@ -20,7 +19,7 @@ describe("CRUD tasks", function () {
   });
 
   it("should return return page", function (done) {
-    client.open('http://localhost:5000/', function (status) {
+    client.open('http://localhost:4000/', function (status) {
       client.evaluate(function () {
         return "apple";
       }, function (result) {
