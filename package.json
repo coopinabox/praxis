@@ -18,7 +18,7 @@
     "ciab-backbone": "^0.1.0",
     "envify": "^1.2.1",
     "feathers": "^0.3.1",
-    "ciab-header": "0.0.1",
+    "ciab-header-component": "^0.1.0",
     "ciab-utils": "0.0.1",
     "ciab-actions-api": "^0.1.1",
     "ciab-actions": "^0.1.2",
@@ -45,7 +45,7 @@
     ]
   },
   "testling": {
-    "files": "test/client/*.js",
+    "files": "test/client.js",
     "harness": "mocha",
     "browsers": [
       "ie/9..latest",
