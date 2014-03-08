@@ -59,7 +59,7 @@
     ]
   },
   "scripts": {
-    "migrate": "echo 'NOT YET IMPLEMENTED'",
+    "migrate": "bin/migrate",
     "test-server": "(export NODE_ENV=test; npm run migrate && mocha -R spec -t 10s test/{server,both}/*.js)",
     "test-client": "(export NODE_ENV=test; testling)",
     "test": "npm run test-server && (if [ -z \"$TRAVIS\" ]; then npm run test-client; fi)",

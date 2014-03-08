@@ -1,0 +1,9 @@
+#!/bin/bash
+
+APIS=$(ls node_modules | grep -E "ciab-[^/]*-api")
+for API in $APIS
+do
+  cd node_modules/$API
+  npm run migrate
+  cd ../../
+done 
