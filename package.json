@@ -23,7 +23,8 @@
     "ciab-actions-api": "^0.1.1",
     "ciab-actions": "^0.1.2",
     "ecstatic": "^0.4.13",
-    "brfs": "^1.0.0"
+    "brfs": "^1.0.0",
+    "ciab-bookshelf": "^0.1.0"
   },
   "devDependencies": {
     "watchify": "^0.6.1",
@@ -66,7 +67,7 @@
     "test": "npm run test-server && (if [ -z \"$TRAVIS\" ]; then npm run test-client; fi)",
     "lint": "jshint src ;true",
     "release": "npm-release patch -m \"version++\"",
-    "develop": "export NODE_ENV=development; gulp develop & nodemon .",
-    "start": "gulp && node ."
+    "develop": "(export NODE_ENV=development; npm run migrate && (gulp develop & nodemon .))",
+    "start": "npm run migrate && gulp && node ."
   }
 }
